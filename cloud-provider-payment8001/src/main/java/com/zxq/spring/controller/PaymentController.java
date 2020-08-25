@@ -16,7 +16,7 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @PostMapping("/create")
-    public CommentResult create(Payment payment){
+    public CommentResult<Payment> create(Payment payment){
         int number = paymentService.create(payment);
         log.info("=======查询结果为:"+number);
         if (number>0){
@@ -27,7 +27,7 @@ public class PaymentController {
     }
 
     @GetMapping("/select/{id}")
-    public CommentResult select(@PathVariable("id") Long id){
+    public CommentResult<Payment> select(@PathVariable("id") Long id){
         Payment payment = paymentService.selectById(id);
         if (payment!=null){
             return new CommentResult(200,"查询成功",payment);
