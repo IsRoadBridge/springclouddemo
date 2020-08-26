@@ -16,7 +16,7 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @PostMapping("/create")
-    public CommentResult<Payment> create(Payment payment){
+    public CommentResult<Payment> create(@RequestBody Payment payment){
         int number = paymentService.create(payment);
         log.info("=======查询结果为:"+number);
         if (number>0){
