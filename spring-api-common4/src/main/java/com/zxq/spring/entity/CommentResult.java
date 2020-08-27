@@ -5,10 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class Payment {
+@AllArgsConstructor
+public class CommentResult<T> {
 
-    private Long id;
-    private String serial;
+    private int code;
+    private String message;
+    private T data;
 }
