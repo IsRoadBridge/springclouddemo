@@ -1,0 +1,10 @@
+server:
+  port: 8081
+
+dubbo:
+  application:
+    name: dubbo-consumer-service
+  registry:
+    address: zookeeper://127.0.0.1:2181  #注册中心地址也可以直接写注册中心类型和地址
+  monitor:
+    protocol: registry
