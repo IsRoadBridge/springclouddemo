@@ -1,14 +1,14 @@
 server:
-  port: 8082
+  port: 8083
 
 dubbo:
   application:
-    name: dubbo-payment-service1  #服务名称
+    name: dubbo-payment-service2  #服务名称
   registry:
     address: 127.0.0.1:2181      #注册中心地址
     protocol: zookeeper          #服务注册中心类型
   protocol:
     name: dubbo      #指定通讯规则
-    port: 20880      #通讯端口
+    port: 20881      #通讯端口
   monitor:
     protocol: registry  #monitor发现服务的方式，通有通过注册中心发现和直连地址发现两种

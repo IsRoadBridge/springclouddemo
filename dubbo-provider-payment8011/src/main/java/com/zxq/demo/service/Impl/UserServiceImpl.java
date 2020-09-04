@@ -8,14 +8,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-@Service
+@Service(version = "1.0")
 public class UserServiceImpl implements UserService {
 
 
     @Override
     public String getMap(String name) {
         Map<String,String> map = new HashMap<>();
-        System.out.println("======2======");
+        System.out.println("======old======");
         try {
             Thread.sleep(4000);
             map.put("zxq","1");

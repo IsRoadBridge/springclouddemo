@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrderServiceImpl implements OrderService {
 
-    @Reference
+    @Reference(timeout = 1000,retries = 2,version = "*")
     private UserService userService;
 
     @Override
