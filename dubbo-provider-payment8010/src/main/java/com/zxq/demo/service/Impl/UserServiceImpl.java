@@ -15,13 +15,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public String getMap(String name) {
         Map<String,String> map = new HashMap<>();
-        System.out.println("======2======");
+        System.out.println("======111======");
         try {
             Thread.sleep(4000);
             map.put("zxq","1");
             map.put("zlq","12");
             map.put("bridge","123");
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

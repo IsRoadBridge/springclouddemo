@@ -8,10 +8,10 @@
         <version>2.3.3.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.zxq.demo</groupId>
-    <artifactId>dubbo-consumer-oerder85</artifactId>
+    <groupId>com.zxq.spring</groupId>
+    <artifactId>cloud-provider-payment8003</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demo</name>
+    <name>cloud-provider-payment8003</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -24,26 +24,26 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- Dubbo Spring Boot Starter -->
-        <dependency>
-            <groupId>com.alibaba.boot</groupId>
-            <artifactId>dubbo-spring-boot-starter</artifactId>
-            <version>0.2.0</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-hystrix -->
+        <!-- spring-cloud-starter-zookeeper-discovery -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-            <version>2.1.5.RELEASE</version>
+            <artifactId>spring-cloud-starter-zookeeper-discovery</artifactId>
+            <version>2.2.1.RELEASE</version>
+            <!--先排除自带的zookeeper3.5.3-->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.zookeeper</groupId>
+                    <artifactId>zookeeper</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
-
-
+        <!--指定自己的zookeeper版本-->
         <dependency>
-            <groupId>com.zxq.demo</groupId>
-            <artifactId>dubbo-common-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+            <version>3.4.13</version>
         </dependency>
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
