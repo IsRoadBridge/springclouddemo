@@ -8,8 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.concurrent.TimeUnit;
+
 @RestController
-@RequestMapping("/payment")
 @Slf4j
 public class PaymentController {
 
@@ -17,7 +18,7 @@ public class PaymentController {
     private PaymentService paymentService;
     @Value("${server.port}")
     private String serverPort;
-    @PostMapping("/create")
+    @PostMapping("/payment/create")
     public CommentResult<Payment> create(@RequestBody Payment payment){
         int number = paymentService.create(payment);
         log.info("=======查询结果为:"+number);
@@ -28,7 +29,7 @@ public class PaymentController {
         }
     }
 
-    @GetMapping("/select/{id}")
+    @GetMapping("/payment/select/{id}")
     public CommentResult<Payment> select(@PathVariable("id") Long id){
         Payment payment = paymentService.selectById(id);
         if (payment!=null){
@@ -36,5 +37,16 @@ public class PaymentController {
         }else{
             return new CommentResult(444,"没有该id为"+id+"的数据",null);
         }
+    }
+
+    //设置该方法超时时间为3秒
+    @GetMapping("/payment/timeOut")
+    public  String paymentTimeOut()  {
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return serverPort;
     }
 }

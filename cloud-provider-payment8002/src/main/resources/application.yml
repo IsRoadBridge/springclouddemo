@@ -6,7 +6,7 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
     driver-class-name: com.mysql.cj.jdbc.Driver             # mysql驱动包
-    url: jdbc:mysql://localhost:3306/clouddb?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/clouddb?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
     username: root
     password: 123456
 
@@ -15,8 +15,8 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      #defaultZone: http://localhost:7001/eureka/
-      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+
   instance:
     instance-id: payment8002  #指定你注册的服务在服务端显示的具体名字
     prefer-ip-address: true   #当鼠标指到服务名称上显示具体ip

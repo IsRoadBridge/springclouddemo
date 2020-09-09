@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @RestController
-@RequestMapping("/payment")
 @Slf4j
 public class PaymentController {
 
@@ -22,10 +22,10 @@ public class PaymentController {
     private PaymentService paymentService;
     @Value("${server.port}")
     private String serverPort;
-    @Resource
-    private DiscoveryClient discoveryClient;
+  /*  @Resource
+    private DiscoveryClient discoveryClient;*/
 
-    @PostMapping("/create")
+    @PostMapping("/payment/create")
     public CommentResult<Payment> create(@RequestBody Payment payment){
         int number = paymentService.create(payment);
         log.info("=======查询结果为:"+number);
@@ -36,7 +36,7 @@ public class PaymentController {
         }
     }
 
-    @GetMapping("/select/{id}")
+    @GetMapping("/payment/select/{id}")
     public CommentResult<Payment> select(@PathVariable("id") Long id){
         Payment payment = paymentService.selectById(id);
         if (payment!=null){
@@ -46,22 +46,33 @@ public class PaymentController {
         }
     }
 
-    @GetMapping("/payment/discovery")
-    public  DiscoveryClient getDiscoveryClient(){
-        //通过discoveryClient.getServices()方法查看注册的服务有哪些
-        List<String> services = discoveryClient.getServices();
-        for (String element:services){
-            log.info("====element:"+element);
+    //设置该方法超时时间为3秒
+    @GetMapping("/payment/timeOut")
+    public  String paymentTimeOut()  {
+        try {
+            TimeUnit.SECONDS.sleep(6);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        //通过discoveryClient.getInstances("某个服务")来查看该服务下有哪些实例，以及这些实例的名称，主机地址，端口，url
-        List<ServiceInstance> instances = discoveryClient.getInstances("cloud-payment-service");
-        for (ServiceInstance instance:instances){
-            log.info(instance.getInstanceId()+"\t"+instance.getHost()+"\t"+instance.getPort()+"\t"+instance.getUri());
-        }
-        return discoveryClient;
+        return serverPort;
     }
-    /*执行结果
-    *INFO 14436 --- [nio-8001-exec-7] c.z.spring.controller.PaymentController  : ====element:cloud-payment-service
-     INFO 14436 --- [nio-8001-exec-7] c.z.spring.controller.PaymentController  : payment8001	192.168.31.124	8001	http://192.168.31.124:8001
-     INFO 14436 --- [nio-8001-exec-7] c.z.spring.controller.PaymentController  : payment8002	192.168.31.124	8002	http://192.168.31.124:8002*/
+
+//    @GetMapping("/payment/discovery")
+//    public  DiscoveryClient getDiscoveryClient(){
+//        //通过discoveryClient.getServices()方法查看注册的服务有哪些
+//        List<String> services = discoveryClient.getServices();
+//        for (String element:services){
+//            log.info("====element:"+element);
+//        }
+//        //通过discoveryClient.getInstances("某个服务")来查看该服务下有哪些实例，以及这些实例的名称，主机地址，端口，url
+//        List<ServiceInstance> instances = discoveryClient.getInstances("cloud-payment-service");
+//        for (ServiceInstance instance:instances){
+//            log.info(instance.getInstanceId()+"\t"+instance.getHost()+"\t"+instance.getPort()+"\t"+instance.getUri());
+//        }
+//        return discoveryClient;
+//    }
+//    /*执行结果
+//    *INFO 14436 --- [nio-8001-exec-7] c.z.spring.controller.PaymentController  : ====element:cloud-payment-service
+//     INFO 14436 --- [nio-8001-exec-7] c.z.spring.controller.PaymentController  : payment8001	192.168.31.124	8001	http://192.168.31.124:8001
+//     INFO 14436 --- [nio-8001-exec-7] c.z.spring.controller.PaymentController  : payment8002	192.168.31.124	8002	http://192.168.31.124:8002*/
 }
