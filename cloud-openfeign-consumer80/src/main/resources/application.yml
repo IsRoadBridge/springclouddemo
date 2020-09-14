@@ -17,3 +17,8 @@ ribbon:
   ReadTimeout: 5000
   #与提供者建立连接的超时时间
   ConnectTimeout: 5000
+
+
+logging:
+  level:
+    com.zxq.spring.service.FeignService: debug  #指定具体的接口的日志级别
