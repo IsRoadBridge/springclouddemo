@@ -29,6 +29,11 @@ public class OrderController {
         return restTemplate.getForObject(PAYMENT_URL+"/payment/select/"+id,CommentResult.class);
     }
 
+    @GetMapping("/consumer/payment/sleuth")
+    public String sleuth(){
+        return restTemplate.getForObject(PAYMENT_URL+"/payment/sleuth",String.class);
+    }
+
     @GetMapping("/payment/get/{id}")
     public CommentResult<Payment> paymentGetById2(@PathVariable("id") Long id){
         ResponseEntity<CommentResult> entity= restTemplate.getForEntity(PAYMENT_URL+"/payment/select/"+id,CommentResult.class);

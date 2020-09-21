@@ -1,0 +1,24 @@
+server:
+  port: 3344
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/IsRoadBridge/cloud-config.git
+          search-paths:
+            - cloud-config
+      label: master
+#开启rabbitMQ消息中间件
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+#开启bus消息总线
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh

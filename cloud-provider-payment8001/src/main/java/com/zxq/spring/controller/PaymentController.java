@@ -46,6 +46,11 @@ public class PaymentController {
         }
     }
 
+    @GetMapping("/payment/sleuth")
+    public String sleuth(){
+        return "这是一次8001的调用";
+    }
+
     //设置该方法超时时间为3秒
     @GetMapping("/payment/timeOut")
     public  String paymentTimeOut()  {
@@ -72,7 +77,7 @@ public class PaymentController {
 //        return discoveryClient;
 //    }
 //    /*执行结果
-//    *INFO 14436 --- [nio-8001-exec-7] c.z.spring.controller.PaymentController  : ====element:cloud-payment-service
-//     INFO 14436 --- [nio-8001-exec-7] c.z.spring.controller.PaymentController  : payment8001	192.168.31.124	8001	http://192.168.31.124:8001
-//     INFO 14436 --- [nio-8001-exec-7] c.z.spring.controller.PaymentController  : payment8002	192.168.31.124	8002	http://192.168.31.124:8002*/
+//    *INFO 14436 --- [nio-8001-exec-7] c.z.spring.com.zxq.spring.controller.PaymentController  : ====element:cloud-payment-service
+//     INFO 14436 --- [nio-8001-exec-7] c.z.spring.com.zxq.spring.controller.PaymentController  : payment8001	192.168.31.124	8001	http://192.168.31.124:8001
+//     INFO 14436 --- [nio-8001-exec-7] c.z.spring.com.zxq.spring.controller.PaymentController  : payment8002	192.168.31.124	8002	http://192.168.31.124:8002*/
 }
