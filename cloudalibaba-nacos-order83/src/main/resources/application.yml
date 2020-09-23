@@ -1,0 +1,16 @@
+server:
+  port: 83
+
+spring:
+  application:
+    name: nacos-consumer-83
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848  #配置nacos地址
+
+
+
+#用于配置负载均衡的服务名，在代码中进行读取，实现代码和配置分离
+service-url:
+  nacos-provider-service: http://nacos-payment-9001
