@@ -1,0 +1,35 @@
+server:
+  port: 8401
+
+spring:
+  application:
+    name: cloudalibaba-sentinel-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848  #配置nacos地址
+    sentinel:
+      transport:
+        dashboard: localhost:8080  #配置sentinel地址
+        port: 8719                 #配置端口
+      datasource:
+        ds1:
+          nacos:
+            server-addr: localhost:8848         #添加nacos服务器地址
+            dataId: cloudalibaba-sentinel-service  #dataId
+            groupId: DEFAULT_GROUP                 #组名
+            data-type: json                        #类型
+            rule-type: flow                        #规则
+
+              #   "resource": "/select",    #资源名称
+              #   "limitApp": "default",  #限流的来源app
+              #   "grade": 1,             #阈值类型，0表示线程数，1表示QPS
+              #   "count": 5,             #限流阈值
+              #  "strategy": 0,           #流控规则，0是直接，1是关联，2是链路
+            #   "controlBehavior": 0,    #流控效果（0直接拒绝 /1 排队等待 / 2慢启动模式
+            #   "clusterMode": false     #是否为集群
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
