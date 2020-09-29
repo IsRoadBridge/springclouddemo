@@ -1,0 +1,31 @@
+server:
+  port: 2003
+
+spring:
+  application:
+    name: seata-storage-service
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: zxq_tx_group
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
+    driver-class-name: com.mysql.jdbc.Driver              # mysql驱动包
+    url: jdbc:mysql://localhost:3306/seata_storage?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  type-aliases-package: com.zxq.spring.domain    # 所有Entity别名类所在包
+
+feign:
+  hystrix:
+    enabled: false
+logging:
+  level:
+    io:
+      seata: info
